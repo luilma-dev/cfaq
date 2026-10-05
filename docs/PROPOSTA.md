@@ -16,6 +16,7 @@ O projeto foi solicitado como um aplicativo brasileiro em React Native com Expo 
 - Sem vidas, ranking, moeda virtual, sequência punitiva, anúncios ou notificações de pressão.
 - Progresso real, iniciado em zero. Nenhum resultado representa promessa de aprovação.
 - Dados pessoais e resultados ficam no aparelho nesta versão.
+- A tela inicial apresenta uma única ação principal: continuar a próxima lição. O progresso aparece em resumo; trilhas, plano e revisão ficam na navegação.
 
 ## Escopo da primeira versão
 
