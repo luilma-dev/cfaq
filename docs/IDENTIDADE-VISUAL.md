@@ -19,13 +19,13 @@ A referência fornecida pelo idealizador define um wordmark sóbrio, azul-marinh
 | Amarelo brasileiro, detalhe | `#F4C542` |
 | Aviso e erro                | `#A64032` |
 
-Verde e amarelo aparecem em pequenos detalhes. Não usar bandeiras, brasões ou insígnias oficiais. Botões de ação usam azul-marinho para manter bom contraste com texto branco; azul vivo aparece em realces e indicadores.
+Verde e amarelo aparecem em pequenos detalhes. Uma bandeira brasileira simplificada identifica a origem do app no rodapé; não usar brasões ou insígnias oficiais. Botões de ação usam azul-marinho para manter bom contraste com texto branco; azul vivo aparece em realces e indicadores.
 
 ## Tipografia e composição
 
 Manrope em títulos, DM Sans em texto. Arquivos de fonte acompanham o pacote e não dependem de carregamento externo durante o estudo. Fallback de sistema se ocorrer falha no carregamento.
 
-Superfícies claras sem contorno nos cards, separadas por cor e espaçamento, com cantos arredondados. Conteúdo legível antes da decoração. Navegação inferior no celular e lateral em telas largas. Interface totalmente em português brasileiro.
+Superfícies claras sem contorno nos cards, separadas por cor e espaçamento, com cantos arredondados. Conteúdo legível antes da decoração. Navegação inferior no celular e lateral em telas largas. No celular, os textos do rodapé ficam empilhados e sua linha divisória ocupa toda a largura da tela. Interface totalmente em português brasileiro.
 
 ## Acessibilidade
 

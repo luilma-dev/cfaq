@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, TextInput, View, useWindowDimensions } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Shell } from '../components/Shell';
-import { Card, colors, Icon, ProgressBar, T, Tag } from '../components/ui';
+import { Card, colors, Icon, ProgressBar, T } from '../components/ui';
 import { useStudy } from '../context/StudyContext';
 import { lessons, subjects, type Subject } from '../data/curriculum';
 import { stats } from '../lib/learning';
@@ -11,6 +11,8 @@ export default function Trails() {
   const { materia } = useLocalSearchParams<{ materia?: string }>();
   const subject: Subject = materia === 'matematica' ? 'matematica' : 'portugues';
   const [search, setSearch] = useState('');
+  const { width } = useWindowDimensions();
+  const compact = width < 600;
   const { state } = useStudy();
   const progress = stats(state, subject);
   const info = subjects[subject];
@@ -38,40 +40,44 @@ export default function Trails() {
               router.setParams({ materia: sub });
               setSearch('');
             }}
-            style={[s.tab, subject === sub && s.activeTab]}
+            style={[s.tab, compact && s.tabCompact, subject === sub && s.activeTab]}
           >
-            <Icon
-              name={subjects[sub].icon}
-              size={18}
-              color={subject === sub ? colors.navy : colors.muted}
-            />
-            <T variant="label" style={{ color: subject === sub ? colors.navy : colors.muted }}>
-              {subjects[sub].name}
+            <View style={s.tabName}>
+              <Icon
+                name={subjects[sub].icon}
+                size={compact ? 16 : 18}
+                color={subject === sub ? colors.navy : colors.muted}
+              />
+              <T
+                variant="label"
+                numberOfLines={1}
+                style={{ color: subject === sub ? colors.navy : colors.muted }}
+              >
+                {subjects[sub].name}
+              </T>
+            </View>
+            <T variant="small" style={[s.tabCount, subject === sub && { color: colors.navy }]}>
+              {lessons.filter((l) => l.subject === sub).length} lições
             </T>
-            <Tag
-              text={String(lessons.filter((l) => l.subject === sub).length)}
-              background={subject === sub ? colors.blueTint : '#F1F5F9'}
-            />
           </Pressable>
         ))}
       </View>
-      <Card style={{ gap: 12, marginBottom: 23 }}>
-        <View
-          style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}
-        >
-          <View style={{ flex: 1 }}>
-            <T variant="heading">{info.name}</T>
-            <T variant="small">{info.description}</T>
+      <Card style={[s.progressCard, compact && s.progressCardCompact]}>
+        <View style={s.progressHeader}>
+          <View style={[s.subjectIcon, { backgroundColor: info.tint }]}>
+            <Icon name={info.icon} color={info.color} size={20} />
           </View>
-          <T variant="heading" style={{ color: info.color }}>
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <T variant="heading">{info.name}</T>
+            <T variant="small">
+              {progress.completed} de {progress.total} lições concluídas
+            </T>
+          </View>
+          <T variant="label" style={{ color: info.color, alignSelf: 'flex-start', marginTop: 2 }}>
             {progress.percent}%
           </T>
         </View>
         <ProgressBar value={progress.percent} color={info.color} />
-        <T variant="small">
-          {progress.completed} de {progress.total} lições concluídas · Todas disponíveis para
-          estudar
-        </T>
       </Card>
       <View style={s.search}>
         <Icon name="search" color={colors.muted} size={18} />
@@ -152,14 +158,28 @@ const s = StyleSheet.create({
   },
   tab: {
     flex: 1,
-    minHeight: 49,
+    minWidth: 0,
+    minHeight: 54,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
+    gap: 12,
     borderRadius: 9,
   },
+  tabCompact: { minHeight: 70, flexDirection: 'column', gap: 2 },
+  tabName: { flexDirection: 'row', alignItems: 'center', gap: 7 },
+  tabCount: { fontSize: 11 },
   activeTab: { backgroundColor: colors.white },
+  progressCard: { gap: 18, marginBottom: 23 },
+  progressCardCompact: { padding: 20 },
+  progressHeader: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  subjectIcon: {
+    width: 42,
+    height: 42,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   search: {
     flexDirection: 'row',
     alignItems: 'center',

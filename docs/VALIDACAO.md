@@ -20,6 +20,8 @@ Os cenários de interface verificam uma lição com erro e acertos, conclusão, 
 
 Na revisão da tela inicial, a apresentação foi reduzida à próxima lição e ao progresso geral. O cenário de início passou em desktop e viewport móvel, sem erros de execução nem largura horizontal excedente. As capturas em \`docs/images/inicio-desktop.png\` e \`docs/images/inicio-mobile.png\` foram atualizadas.
 
+Na revisão móvel das trilhas, os seletores de Português e Matemática e o resumo da matéria foram conferidos em 320 px de largura. O rodapé empilha os textos, mostra a bandeira redesenhada e estende a linha divisória por toda a tela. Não houve erro de console nem rolagem horizontal. Capturas: \`docs/images/trilhas-mobile.png\` e \`docs/images/rodape-mobile.png\`.
+
 Os testes de motor verificam progresso inicialmente vazio, regras do caderno de erros, respostas inválidas, conclusões idempotentes, repetição de lição, separação de disciplinas, amostragem sem repetição, limites do banco, serialização e sanitização. Parte dos gabaritos matemáticos também foi comparada com cálculos independentes.
 
 A integração contínua também foi aprovada em uma instalação limpa no GitHub: [execução registrada](https://github.com/luilma-dev/cfaq/actions/runs/37312640445). Ela repetiu tipos, lint, testes, Expo Doctor, exportação das três plataformas e os 12 cenários de interface.

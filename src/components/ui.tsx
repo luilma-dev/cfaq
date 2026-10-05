@@ -9,7 +9,7 @@ import {
   type ViewStyle,
   type StyleProp,
 } from 'react-native';
-import Svg, { Circle, Path, Line } from 'react-native-svg';
+import Svg, { Circle, Path, Line, Rect } from 'react-native-svg';
 
 export const colors = {
   navy: '#0B2A5B',
@@ -220,27 +220,14 @@ export function Empty({
 }
 export function BrazilMark() {
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7 }}>
-      <View
-        style={{
-          width: 15,
-          height: 10,
-          backgroundColor: colors.green,
-          borderRadius: 2,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <View
-          style={{
-            width: 6,
-            height: 6,
-            backgroundColor: colors.yellow,
-            transform: [{ rotate: '45deg' }],
-          }}
-        />
-      </View>
-      <T variant="small" style={{ fontSize: 11 }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9 }}>
+      <Svg width={24} height={17} viewBox="0 0 28 20" aria-hidden>
+        <Rect width={28} height={20} rx={2} fill="#009B3A" />
+        <Path d="M14 2.5 L25 10 L14 17.5 L3 10 Z" fill="#FFDF00" />
+        <Circle cx={14} cy={10} r={4.7} fill="#002776" />
+        <Path d="M9.5 9.3 C12 8.1 15 8.9 18.5 11" stroke="#FFFFFF" strokeWidth={1.2} fill="none" />
+      </Svg>
+      <T variant="small" style={{ fontSize: 12 }}>
         Feito no Brasil. Para ir mais longe.
       </T>
     </View>

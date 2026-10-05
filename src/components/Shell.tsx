@@ -188,12 +188,12 @@ export function Shell({
                   style={{ marginVertical: 80 }}
                 />
               )}
-              <View style={styles.footer}>
-                <BrazilMark />
-                <T variant="small" style={{ fontSize: 11 }}>
-                  CFAQ · Português e Matemática
-                </T>
-              </View>
+            </View>
+            <View style={[styles.footer, !desktop && styles.footerMobile, !desktop && { width }]}>
+              <BrazilMark />
+              <T variant="small" style={{ fontSize: desktop ? 11 : 12 }}>
+                CFAQ · Português e Matemática
+              </T>
             </View>
           </ScrollView>
           {!desktop && (
@@ -297,6 +297,9 @@ const styles = StyleSheet.create({
   scrollContent: { paddingTop: 30, paddingBottom: 15 },
   content: { width: '100%', maxWidth: 1130, alignSelf: 'center' },
   footer: {
+    width: '100%',
+    maxWidth: 1130,
+    alignSelf: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 12,
@@ -305,6 +308,15 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderTopWidth: 1,
     borderTopColor: colors.line,
+  },
+  footerMobile: {
+    alignSelf: 'flex-start',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    gap: 7,
+    marginHorizontal: -20,
+    paddingHorizontal: 20,
   },
   bottomNav: {
     flexDirection: 'row',
