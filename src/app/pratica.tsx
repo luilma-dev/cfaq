@@ -32,9 +32,7 @@ export default function Practice() {
               onPress={() => setCount(size)}
               style={{
                 flex: 1,
-                borderWidth: 1,
-                borderColor: count === size ? colors.navy : colors.line,
-                backgroundColor: count === size ? colors.blueTint : colors.white,
+                backgroundColor: count === size ? colors.blueTint : '#F4F6FA',
                 padding: 20,
                 borderRadius: 12,
                 gap: 8,

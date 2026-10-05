@@ -25,7 +25,7 @@ Verde e amarelo aparecem em pequenos detalhes. Não usar bandeiras, brasões ou 
 
 Manrope em títulos, DM Sans em texto. Arquivos de fonte acompanham o pacote e não dependem de carregamento externo durante o estudo. Fallback de sistema se ocorrer falha no carregamento.
 
-Superfícies claras, bordas discretas, espaçamento confortável e cantos arredondados. Conteúdo legível antes da decoração. Navegação inferior no celular e lateral em telas largas. Interface totalmente em português brasileiro.
+Superfícies claras sem contorno nos cards, separadas por cor e espaçamento, com cantos arredondados. Conteúdo legível antes da decoração. Navegação inferior no celular e lateral em telas largas. Interface totalmente em português brasileiro.
 
 ## Acessibilidade
 

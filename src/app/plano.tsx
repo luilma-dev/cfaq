@@ -83,7 +83,7 @@ export default function Plan() {
               style={{
                 padding: 20,
                 gap: 17,
-                borderColor: week === current ? '#BBD1F1' : colors.line,
+                backgroundColor: week === current ? '#F0F5FC' : colors.white,
               }}
             >
               <View

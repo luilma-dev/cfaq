@@ -91,8 +91,8 @@ export default function Home() {
             suffix: 'questões no caderno',
             icon: 'refresh-cw' as const,
           },
-        ].map((metric, i) => (
-          <View key={metric.label} style={[s.metric, i > 0 && s.metricBorder]}>
+        ].map((metric) => (
+          <View key={metric.label} style={s.metric}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7 }}>
               {width > 420 && <Icon name={metric.icon} size={14} color={colors.muted} />}
               <T variant="small" style={{ fontSize: width < 500 ? 10 : 12 }}>
@@ -119,7 +119,7 @@ export default function Home() {
         ))}
       </View>
       <View style={[s.columns, !wide && { flexDirection: 'column' }]}>
-        <View style={{ flex: 1.7, minWidth: 0 }}>
+        <View style={{ flex: wide ? 1.7 : undefined, minWidth: 0 }}>
           <SectionTitle title={next ? 'Seu próximo passo' : 'Continue aprendendo'} />
           <Card style={{ gap: 17 }}>
             <View
@@ -163,9 +163,9 @@ export default function Home() {
             />
           </Card>
         </View>
-        <View style={{ flex: 1, minWidth: 0 }}>
+        <View style={{ flex: wide ? 1 : undefined, minWidth: 0 }}>
           <SectionTitle title="Um plano que cabe na vida" />
-          <Card style={{ backgroundColor: '#F1F6F3', borderColor: '#E2EDE5', gap: 15 }}>
+          <Card style={{ backgroundColor: '#F1F6F3', gap: 15 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
               <Icon name="calendar" color={colors.green} />
               <T variant="label" style={{ color: colors.green }}>
@@ -202,7 +202,7 @@ export default function Home() {
                 accessibilityRole="button"
                 accessibilityLabel={'Abrir trilha de ' + info.name}
                 onPress={() => router.push({ pathname: '/trilhas', params: { materia: subject } })}
-                style={({ pressed }) => [{ flex: 1, opacity: pressed ? 0.8 : 1 }]}
+                style={({ pressed }) => [{ flex: wide ? 1 : undefined, opacity: pressed ? 0.8 : 1 }]}
               >
                 <Card style={{ gap: 16 }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
@@ -252,8 +252,6 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: '#E0EAF8',
   },
   eyebrow: { fontSize: 9, color: colors.navy, letterSpacing: 1.4 },
   smallLine: { backgroundColor: colors.blue, width: 17, height: 2 },
@@ -262,14 +260,11 @@ const s = StyleSheet.create({
   metrics: {
     marginVertical: 23,
     backgroundColor: colors.white,
-    borderWidth: 1,
-    borderColor: colors.line,
     borderRadius: 14,
     flexDirection: 'row',
     paddingVertical: 19,
   },
   metric: { flex: 1, paddingHorizontal: 17 },
-  metricBorder: { borderLeftWidth: 1, borderLeftColor: colors.line },
   columns: { flexDirection: 'row', gap: 20 },
   inline: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   subjectIcon: {

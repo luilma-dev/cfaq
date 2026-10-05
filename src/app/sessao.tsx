@@ -225,11 +225,10 @@ function SessionContent({
                   style={[
                     s.option,
                     selected === i && {
-                      borderColor: colors.navy,
                       backgroundColor: colors.blueTint,
                     },
-                    right && { borderColor: colors.green, backgroundColor: colors.greenTint },
-                    wrong && { borderColor: colors.red, backgroundColor: '#FFF1EE' },
+                    right && { backgroundColor: colors.greenTint },
+                    wrong && { backgroundColor: '#FFF1EE' },
                   ]}
                 >
                   <View
@@ -322,8 +321,7 @@ function SessionContent({
 }
 const s = StyleSheet.create({
   option: {
-    borderWidth: 1,
-    borderColor: colors.line,
+    backgroundColor: '#F4F6FA',
     borderRadius: 11,
     padding: 16,
     minHeight: 66,

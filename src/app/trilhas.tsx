@@ -175,8 +175,6 @@ const s = StyleSheet.create({
   input: { flex: 1, minHeight: 49, fontSize: 14, color: colors.ink },
   lesson: {
     backgroundColor: colors.white,
-    borderWidth: 1,
-    borderColor: colors.line,
     padding: 16,
     borderRadius: 12,
     flexDirection: 'row',

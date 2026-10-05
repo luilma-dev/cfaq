@@ -84,7 +84,7 @@ export default function LessonScreen() {
             </View>
           ))}
         </Card>
-        <Card style={{ backgroundColor: '#EDF3FC', borderColor: '#DFE9F8', gap: 13 }}>
+        <Card style={{ backgroundColor: '#EDF3FC', gap: 13 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
             <Icon name="feather" size={18} />
             <T variant="heading">Veja na prática</T>

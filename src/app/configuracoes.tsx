@@ -59,11 +59,9 @@ function SettingsContent() {
                   onPress={() => change({ course })}
                   style={{
                     flex: 1,
-                    borderWidth: 1,
-                    borderColor: settings.course === course ? colors.navy : colors.line,
                     borderRadius: 10,
                     padding: 15,
-                    backgroundColor: settings.course === course ? colors.blueTint : colors.white,
+                    backgroundColor: settings.course === course ? colors.blueTint : '#F4F6FA',
                     gap: 4,
                   }}
                 >
@@ -92,10 +90,8 @@ function SettingsContent() {
                     paddingHorizontal: 17,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderWidth: 1,
-                    borderColor: settings.minutes === minutes ? colors.navy : colors.line,
                     borderRadius: 9,
-                    backgroundColor: settings.minutes === minutes ? colors.blueTint : colors.white,
+                    backgroundColor: settings.minutes === minutes ? colors.blueTint : '#F4F6FA',
                   }}
                 >
                   <T variant="label">{minutes} min</T>
@@ -119,10 +115,8 @@ function SettingsContent() {
                     paddingHorizontal: 17,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderWidth: 1,
-                    borderColor: settings.days === days ? colors.navy : colors.line,
                     borderRadius: 9,
-                    backgroundColor: settings.days === days ? colors.blueTint : colors.white,
+                    backgroundColor: settings.days === days ? colors.blueTint : '#F4F6FA',
                   }}
                 >
                   <T variant="label">{days} dias</T>
