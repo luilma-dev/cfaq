@@ -8,16 +8,16 @@ A referência fornecida pelo idealizador define um wordmark sóbrio, azul-marinh
 
 ## Cores
 
-| Uso | Cor |
-| --- | --- |
-| Primária, confiança | `#0B2A5B` |
-| Ação e destaque | `#3B82F6` |
-| Fundo suave | `#F8FAFC` |
-| Superfície | `#FFFFFF` |
-| Texto secundário | `#64748B` |
-| Verde brasileiro e acerto | `#157A55` |
+| Uso                         | Cor       |
+| --------------------------- | --------- |
+| Primária, confiança         | `#0B2A5B` |
+| Ação e destaque             | `#3B82F6` |
+| Fundo suave                 | `#F8FAFC` |
+| Superfície                  | `#FFFFFF` |
+| Texto secundário            | `#64748B` |
+| Verde brasileiro e acerto   | `#157A55` |
 | Amarelo brasileiro, detalhe | `#F4C542` |
-| Aviso e erro | `#A64032` |
+| Aviso e erro                | `#A64032` |
 
 Verde e amarelo aparecem em pequenos detalhes. Não usar bandeiras, brasões ou insígnias oficiais. Botões de ação usam azul-marinho para manter bom contraste com texto branco; azul vivo aparece em realces e indicadores.
 
