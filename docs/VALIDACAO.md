@@ -20,6 +20,8 @@ Os cenários de interface verificam uma lição com erro e acertos, conclusão, 
 
 Os testes de motor verificam progresso inicialmente vazio, regras do caderno de erros, respostas inválidas, conclusões idempotentes, repetição de lição, separação de disciplinas, amostragem sem repetição, limites do banco, serialização e sanitização. Parte dos gabaritos matemáticos também foi comparada com cálculos independentes.
 
+A integração contínua também foi aprovada em uma instalação limpa no GitHub: [execução registrada](https://github.com/luilma-dev/cfaq/actions/runs/37312640445). Ela repetiu tipos, lint, testes, Expo Doctor, exportação das três plataformas e os 12 cenários de interface.
+
 ## Dependências e auditoria
 
 O relatório **npm audit** apresentou **29 avisos transitivos: 19 de severidade alta e 10 moderada**, nenhum crítico. Os números incluem pacotes afetados indiretamente, não 29 falhas distintas no código do app. Principais origens identificadas:
