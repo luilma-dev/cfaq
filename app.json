@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "CFAQ",
+    "slug": "cfaq",
+    "scheme": "cfaq",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0B2A5B",
+        "foregroundImage": "./assets/android-icon-foreground.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "name": "CFAQ — Estude. Evolua. Conquiste.",
+      "description": "Português e Matemática para CFAQ MOC e MOM. Um app brasileiro de aprendizagem."
+    },
+    "plugins": ["expo-router", "expo-font"]
+  }
+}

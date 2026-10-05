@@ -1,0 +1,195 @@
+import React, { useState } from 'react';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { router, useLocalSearchParams } from 'expo-router';
+import { Shell } from '../components/Shell';
+import { Card, colors, Icon, ProgressBar, T, Tag } from '../components/ui';
+import { useStudy } from '../context/StudyContext';
+import { lessons, subjects, type Subject } from '../data/curriculum';
+import { stats } from '../lib/learning';
+
+export default function Trails() {
+  const { materia } = useLocalSearchParams<{ materia?: string }>();
+  const subject: Subject = materia === 'matematica' ? 'matematica' : 'portugues';
+  const [search, setSearch] = useState('');
+  const { state } = useStudy();
+  const progress = stats(state, subject);
+  const info = subjects[subject];
+  const normalize = (value: string) =>
+    value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
+  const pool = lessons.filter(
+    (l) =>
+      l.subject === subject && normalize(l.title + ' ' + l.subtitle).includes(normalize(search)),
+  );
+  return (
+    <Shell
+      title="Um assunto de cada vez."
+      subtitle="Siga a sequência da apostila ou escolha o que precisa estudar."
+    >
+      <View style={s.switcher}>
+        {(['portugues', 'matematica'] as Subject[]).map((sub) => (
+          <Pressable
+            key={sub}
+            accessibilityRole="tab"
+            accessibilityState={{ selected: subject === sub }}
+            onPress={() => {
+              router.setParams({ materia: sub });
+              setSearch('');
+            }}
+            style={[s.tab, subject === sub && s.activeTab]}
+          >
+            <Icon
+              name={subjects[sub].icon}
+              size={18}
+              color={subject === sub ? colors.navy : colors.muted}
+            />
+            <T variant="label" style={{ color: subject === sub ? colors.navy : colors.muted }}>
+              {subjects[sub].name}
+            </T>
+            <Tag
+              text={String(lessons.filter((l) => l.subject === sub).length)}
+              background={subject === sub ? colors.blueTint : '#F1F5F9'}
+            />
+          </Pressable>
+        ))}
+      </View>
+      <Card style={{ gap: 12, marginBottom: 23 }}>
+        <View
+          style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}
+        >
+          <View style={{ flex: 1 }}>
+            <T variant="heading">{info.name}</T>
+            <T variant="small">{info.description}</T>
+          </View>
+          <T variant="heading" style={{ color: info.color }}>
+            {progress.percent}%
+          </T>
+        </View>
+        <ProgressBar value={progress.percent} color={info.color} />
+        <T variant="small">
+          {progress.completed} de {progress.total} lições concluídas · Todas disponíveis para
+          estudar
+        </T>
+      </Card>
+      <View style={s.search}>
+        <Icon name="search" color={colors.muted} size={18} />
+        <TextInput
+          accessibilityLabel="Buscar assunto na trilha"
+          placeholder="Qual assunto você quer estudar?"
+          placeholderTextColor={colors.muted}
+          value={search}
+          onChangeText={setSearch}
+          style={s.input}
+        />
+        {search !== '' && (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Limpar busca"
+            onPress={() => setSearch('')}
+            style={{ padding: 10 }}
+          >
+            <Icon name="x" size={17} />
+          </Pressable>
+        )}
+      </View>
+      <View style={{ gap: 10 }}>
+        {pool.map((l) => {
+          const result = state.results[l.id];
+          return (
+            <Pressable
+              key={l.id}
+              accessibilityRole="button"
+              accessibilityLabel={l.title + ', ' + (result ? 'concluída' : 'disponível')}
+              onPress={() => router.push('/licao/' + l.id)}
+              style={({ pressed }) => [s.lesson, pressed && { backgroundColor: '#F1F5FA' }]}
+            >
+              <View style={[s.number, result && { backgroundColor: colors.greenTint }]}>
+                {result ? (
+                  <Icon name="check" color={colors.green} size={18} />
+                ) : (
+                  <T variant="label" style={{ color: info.color }}>
+                    {l.id.slice(-2)}
+                  </T>
+                )}
+              </View>
+              <View style={{ flex: 1, gap: 4 }}>
+                <T variant="label" style={{ fontSize: 16 }}>
+                  {l.title}
+                </T>
+                <T variant="small">
+                  Semana {l.week} · {l.minutes} min · {l.questions.length} exercícios
+                </T>
+              </View>
+              {result && (
+                <T variant="small" style={{ color: colors.green }}>
+                  {result.correct}/{result.total}
+                </T>
+              )}
+              <Icon name="chevron-right" size={18} color={colors.muted} />
+            </Pressable>
+          );
+        })}
+      </View>
+      {pool.length === 0 && (
+        <T style={{ textAlign: 'center', color: colors.muted, padding: 30 }}>
+          Nenhum assunto encontrado. Tente outra palavra.
+        </T>
+      )}
+    </Shell>
+  );
+}
+const s = StyleSheet.create({
+  switcher: {
+    flexDirection: 'row',
+    gap: 6,
+    backgroundColor: '#EDF1F6',
+    padding: 5,
+    borderRadius: 12,
+    marginBottom: 22,
+    alignSelf: 'stretch',
+  },
+  tab: {
+    flex: 1,
+    minHeight: 49,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    borderRadius: 9,
+  },
+  activeTab: { backgroundColor: colors.white },
+  search: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    borderRadius: 10,
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.line,
+    paddingHorizontal: 16,
+    marginBottom: 18,
+    minHeight: 49,
+  },
+  input: { flex: 1, minHeight: 49, fontSize: 14, color: colors.ink },
+  lesson: {
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.line,
+    padding: 16,
+    borderRadius: 12,
+    flexDirection: 'row',
+    gap: 15,
+    alignItems: 'center',
+    minHeight: 82,
+  },
+  number: {
+    height: 40,
+    width: 40,
+    backgroundColor: '#F0F4FA',
+    borderRadius: 11,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
